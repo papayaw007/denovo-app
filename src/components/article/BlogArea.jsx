@@ -1,29 +1,44 @@
 import React from 'react'
 import BlogCard from './blogCard';
+import { useEffect, useState } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
+
+import { db } from '../../firebaseConfig';
 
 
 
  function BlogArea() {
+
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      const querySnapshot = await getDocs(collection(db, 'blogCard'));
+      const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setBlogs(data);
+    };
+
+    fetchBlogs();
+  }, []);
+
+
   return (
     <>
     <div className='mt-5 flex flex-col justify-center items-center space-y-10'>
-    <BlogCard
-   title="PY is making his first real life project"
-   initials = 'PY'
-   name= 'Papa Yaw Adu-Asare'
-   date= '24 Aug. 2024'
-   article = 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum aut quod nemo quibusdam, suscipit incidunt porro nisi eius veritatis ratione rem ex. Rerum aliquam ex, molestiae iure quis perferendis? Totam?'
-   likes = '100'
-   />
-    <BlogCard
-   title="PY is making his first real life project"
-   initials = 'P.Y'
-   name= 'Papa Yaw Adu-Asare'
-   date= '24 Aug. 2024'
-   article = 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum aut quod nemo quibusdam, suscipit incidunt porro nisi eius veritatis ratione rem ex. Rerum aliquam ex, molestiae iure quis perferendis? Totam?'
-   likes = '100'
-   />
+      {blogs.map( card=>(
+        <BlogCard
+        key={card.id}
+        title={card.title}
+        initials = 'PY'
+        name= {card.name}
+        date= '15 April, 2024'
+        article = {card.article}
+        likes = {card.likes}
+        />
+      ))}
+    
     </div>
+
   
     </>
   )
