@@ -12,6 +12,7 @@ function Navbar() {
             Home
           </div>
           <div className="font-medium text-gray-600 cursor-pointer  sm:ml-6 lg:ml-10">
+    
             Hello, User!
           </div>
         </div>
