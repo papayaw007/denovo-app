@@ -8,7 +8,7 @@ function Navbar() {
           <div className="text-xl sm:text-2xl font-bold mb-3 sm:mb-0">
             DENOVO.
           </div>
-          <div className="font-medium text-gray-600 cursor-pointer bg-gray-200 px-4 py-2 rounded-md  sm:ml-6 lg:ml-25">
+          <div className="font-medium text-indigo-500 cursor-pointer bg-indigo-200 px-4 py-2 rounded-md  sm:ml-6 lg:ml-25">
             Home
           </div>
           <div className="font-medium text-gray-600 cursor-pointer  sm:ml-6 lg:ml-10">
