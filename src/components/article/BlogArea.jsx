@@ -11,6 +11,8 @@ import { db } from '../../firebaseConfig';
 
   const [blogs, setBlogs] = useState([]);
 
+  const getInitials = (name) => name.split(' ').slice(0, 2).map(part => part.charAt(0)).join('');
+
   useEffect(() => {
     const fetchBlogs = async () => {
       const querySnapshot = await getDocs(collection(db, 'blogCard'));
@@ -29,7 +31,7 @@ import { db } from '../../firebaseConfig';
         <BlogCard
         key={card.id}
         title={card.title}
-        initials = 'PY'
+        initials = {getInitials(card.name)}
         name= {card.name}
         date= '15 April, 2024'
         article = {card.article}
