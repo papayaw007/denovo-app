@@ -5,7 +5,7 @@ import { RiThumbUpFill } from 'react-icons/ri'; // Filled
 
 
 
-    function BlogCard({title, initials, name, date, article, likes}) {
+    function BlogCard({title, initials, name, date, article, likes, onReadMore}) {
   return (
     <>
     <div className='flex flex-col w-full sm:w-3/4 lg:w-1/2 px-4 sm:px-6 lg:px-10 py-6 sm:py-8 lg:py-10 rounded-md bg-gray-100'>
@@ -15,7 +15,7 @@ import { RiThumbUpFill } from 'react-icons/ri'; // Filled
     <p className='text-gray-500 text-sm sm:text-base'>{name}</p>
   </div>
   <p className='text-xs sm:text-sm text-gray-500 flex justify-end items-center mb-2'>{date}</p>
-  <p className='mb-4 text-sm sm:text-base'>{article} </p>
+  <p className='mb-4 text-sm sm:text-base'>{article.slice(0,400)}...   </p>
   
   <div className='flex flex-col sm:flex-row space-y-3 sm:space-y-0'>
     <div className='flex justify-between sm:justify-end items-center w-full sm:space-x-4 lg:space-x-20 sm:ml-auto'>
@@ -29,7 +29,7 @@ import { RiThumbUpFill } from 'react-icons/ri'; // Filled
       </div>
       
       <div className='flex space-x-2'>
-        <button className='px-3 sm:px-4 py-1 sm:py-2 bg-indigo-500 hover:bg-indigo-700 text-white rounded-md text-xs sm:text-sm'>Read More</button>
+        <button onClick = {()=>onReadMore(article)} className='px-3 sm:px-4 py-1 sm:py-2 bg-indigo-500 hover:bg-indigo-700 text-white rounded-md text-xs sm:text-sm'>Read More</button>
         <button>
           <MdEdit className="text-indigo-700 text-lg sm:text-xl hover:text-indigo-500 cursor-pointer" />
         </button> 

@@ -1,6 +1,6 @@
 import React from "react";
 
-function Navbar() {
+function Navbar({name}) {
   return (
     <main>
       <div className="flex flex-col sm:flex-row justify-between items-center py-4 sm:py-6 lg:py-8 px-4 sm:px-8 lg:px-15">
@@ -13,7 +13,7 @@ function Navbar() {
           </div>
           <div className="font-medium text-gray-600 cursor-pointer  sm:ml-6 lg:ml-10">
     
-            Hello, User!
+            Hello, {name}
           </div>
         </div>
         <div className="w-full sm:w-auto">
