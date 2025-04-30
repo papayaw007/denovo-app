@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 
 
- function BlogArea({blogs, getInitials}) {
+ function BlogArea({blogs, getInitials, handleLike}) {
 
   const [selectedArticle, setSelectedArticle] = useState(null);
 
@@ -14,6 +14,7 @@ import { useState } from 'react';
     setSelectedArticle(selected);
   };
 
+ 
   const onBack = () =>{
     setSelectedArticle(null);
   }
@@ -35,10 +36,15 @@ import { useState } from 'react';
             title={card.title}
             initials = {getInitials(card.name)}
             name= {card.name}
-            date= '15 April, 2024'
+            date= { card.date.toDate().toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
             article = {card.article}
             likes = {card.likes}
             onReadMore={()=>handleReadMore(card.id)}
+            handleLike= {()=> handleLike(card.id)}
             />
           ))
 

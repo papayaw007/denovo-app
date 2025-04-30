@@ -5,7 +5,9 @@ import { RiThumbUpFill } from 'react-icons/ri'; // Filled
 
 
 
-    function BlogCard({title, initials, name, date, article, likes, onReadMore}) {
+
+
+    function BlogCard({title, initials, name, date, article, likes, onReadMore, handleLike}) {
   return (
     <>
     <div className='flex flex-col w-full sm:w-3/4 lg:w-1/2 px-4 sm:px-6 lg:px-10 py-6 sm:py-8 lg:py-10 rounded-md bg-gray-100'>
@@ -22,7 +24,7 @@ import { RiThumbUpFill } from 'react-icons/ri'; // Filled
       <div className='flex justify-center items-center space-x-1 sm:space-x-2'>
         <p className='text-xs sm:text-sm text-gray-500'><span>{likes}</span> likes</p>
         <div className='flex justify-center items-center'>
-          <button>
+          <button onClick={() => handleLike()}>
             <RiThumbUpFill className="text-lg sm:text-xl text-indigo-500 hover:text-indigo-700 cursor-pointer" />
           </button>
         </div>

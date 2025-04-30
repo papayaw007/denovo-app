@@ -16,7 +16,11 @@ import { FiArrowLeft } from 'react-icons/fi';
                 <p className='text-5xl font-bold '>{art.title}</p>
             <div className='flex justify-between py-5'>
             <p className='font-thin text-gray-600'>{art.name}</p>
-            <p className='font-thin text-gray-600'>18 April, 2024</p>
+            <p className='font-thin text-gray-600'>{art.date.toDate().toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}</p>
             </div>
                 </div>
             <p className='text-lg leading-relaxed '>{art.article}</p>
