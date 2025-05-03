@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function Navbar({name}) {
+function Navbar({ name }) {
   return (
     <main>
       <div className="flex flex-col sm:flex-row justify-between items-center py-4 sm:py-6 lg:py-8 px-4 sm:px-8 lg:px-15">
@@ -12,18 +13,21 @@ function Navbar({name}) {
             Home
           </div>
           <div className="font-medium text-gray-600 cursor-pointer  sm:ml-6 lg:ml-10">
-    
             Hello, {name}
           </div>
         </div>
         <div className="w-full sm:w-auto">
           <ul className="flex justify-center sm:justify-end items-center space-x-3 sm:space-x-8">
-            <li className="font-medium text-indigo-600 rounded-lg hover:text-indigo-400 cursor-pointer text-sm sm:text-base">
-              Log In
-            </li>
-            <li className="px-4 sm:px-5 py-2 bg-indigo-600 rounded-lg text-white hover:bg-indigo-400 cursor-pointer text-sm sm:text-base">
-              Sign Up
-            </li>
+            <Link to="/login">
+              <li className="font-medium text-indigo-600 rounded-lg hover:text-indigo-400 cursor-pointer text-sm sm:text-base">
+                Log In
+              </li>
+            </Link>
+            <Link to="/signup">
+              <li className="px-4 sm:px-5 py-2 bg-indigo-600 rounded-lg text-white hover:bg-indigo-400 cursor-pointer text-sm sm:text-base">
+                Sign Up
+              </li>
+            </Link>
           </ul>
         </div>
       </div>
