@@ -1,5 +1,5 @@
 import React from 'react'
-import BlogCard from './blogCard';
+import BlogCard from './BlogCard';
 import ArticlePage from './ArticlePage';
 import { useState } from 'react';
 

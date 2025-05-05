@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import { IoAddOutline } from "react-icons/io5";
 import { auth, db } from "../firebaseConfig";
 import { useState, useEffect } from "react";
+
 import {
   doc,
   getDoc,
@@ -11,7 +12,7 @@ import {
   where,
   getDocs,
 } from "firebase/firestore";
-import BlogCard from "../components/article/blogCard";
+import BlogCard from "../components/article/BlogCard";
 import ArticlePage from "../components/article/ArticlePage";
 
 export default function Dashboard({ blogs, getInitials, handleLike }) {
