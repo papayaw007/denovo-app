@@ -6,6 +6,7 @@ import { auth, db } from "../firebaseConfig"; // Your firebase config
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
+import { updateProfile } from "firebase/auth";
 
 
 export default function Signup() {
@@ -25,6 +26,10 @@ export default function Signup() {
          
           const userCredential = await createUserWithEmailAndPassword(auth, email, password);
           const user = userCredential.user;
+
+          await updateProfile(user, {
+            displayName: data.name, 
+          });
       
          
           await setDoc(doc(db, "users", user.uid), {
