@@ -1,6 +1,6 @@
 import React from 'react'
 
-import BlogArea from '../components/article/blogArea'
+import BlogArea from '../components/article/BlogArea'
 import Navbar from '../components/Navbar'
 
 
