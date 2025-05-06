@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import { IoAddOutline } from "react-icons/io5";
 import { auth, db } from "../firebaseConfig";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   doc,
@@ -15,10 +16,11 @@ import {
 import BlogCard from "../components/article/BlogCard";
 import ArticlePage from "../components/article/ArticlePage";
 
-export default function Dashboard({ blogs, getInitials, handleLike }) {
+export default function Dashboard({ blogs, getInitials, handleLike, handleDelete }) {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedArticle, setSelectedArticle] = useState(null);
+  const navigate = useNavigate();
 
   const handleReadMore = (id) => {
     const selected = blogs.find((article) => article.id === id);
@@ -29,6 +31,15 @@ export default function Dashboard({ blogs, getInitials, handleLike }) {
     setSelectedArticle(null);
   };
 
+  const handleDeleteArticle = async (id) => {
+    await handleDelete(id);
+    // Update local state too
+    setArticles(prevArticles => prevArticles.filter(article => article.id !== id));
+  };
+
+  
+
+ 
   useEffect(() => {
     const fetchArticlesByUserName = async () => {
       try {
@@ -39,7 +50,7 @@ export default function Dashboard({ blogs, getInitials, handleLike }) {
           return;
         }
 
-        // Step 1: Get the user's name from the "users" collection
+ 
         const userDocRef = doc(db, "users", user.uid);
         const userDoc = await getDoc(userDocRef);
 
@@ -48,12 +59,11 @@ export default function Dashboard({ blogs, getInitials, handleLike }) {
           return;
         }
 
-        const userName = userDoc.data().name;
+  
 
 
-        // Step 2: Query the articles collection where name === userName
         const articlesRef = collection(db, "blogCard");
-        const q = query(articlesRef, where("name", "==", userName));
+        const q = query(articlesRef, where("userId", "==", user.uid));
         const querySnapshot = await getDocs(q);
 
         const userArticles = querySnapshot.docs.map((doc) => ({
@@ -72,6 +82,8 @@ export default function Dashboard({ blogs, getInitials, handleLike }) {
     fetchArticlesByUserName();
   }, []);
 
+
+
   if (loading) return <p>Loading articles...</p>;
 
   return (
@@ -80,7 +92,7 @@ export default function Dashboard({ blogs, getInitials, handleLike }) {
       <div className="flex justify-between py-20 px-15">
         <div className="text-xl font-medium">Welcome to Denovo Dashboard!</div>
         <div>
-          <button className="flex items-center space-x-2 py-2 px-4 bg-indigo-500 rounded-lg text-white hover:bg-indigo-700">
+          <button onClick={()=>navigate('/addArticle')} className="flex items-center space-x-2 py-2 px-4 bg-indigo-500 rounded-lg text-white hover:bg-indigo-700">
             <IoAddOutline className="text-xl" />
             <div>Add Article</div>
           </button>
@@ -111,6 +123,7 @@ export default function Dashboard({ blogs, getInitials, handleLike }) {
                 likes={article.likes}
                 onReadMore={() => handleReadMore(article.id)}
                 handleLike={() => handleLike(article.id)}
+                handleDelete={()=>handleDeleteArticle(article.id)}
               />
             ))
           )}

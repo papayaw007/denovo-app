@@ -2,7 +2,7 @@
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { collection, onSnapshot,  updateDoc, increment, doc } from 'firebase/firestore';
+import { collection, onSnapshot,  updateDoc, increment, doc, deleteDoc} from 'firebase/firestore';
 
 import { db } from '../src/firebaseConfig';
 // import { auth } from '../src/firebaseConfig';
@@ -14,6 +14,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import ProtectedRoute from './pages/ProtectedRoute';
+import CreateArticle from './components/article/CreateArticle';
 
 
 
@@ -51,6 +52,22 @@ function App() {
   };
 
 
+const handleDelete = async (id) => {
+  if (!id) {
+    console.error("No ID provided for deletion.");
+    return;
+  }
+
+  try {
+    await deleteDoc(doc(db, "blogCard", id));
+    console.log("Deleted successfully");
+
+    setBlogs(prevBlogs => prevBlogs.filter(blog => blog.id !== id));
+  } catch (error) {
+    console.error("Error deleting article:", error);
+  }
+};
+
 
   return (
    <Router>
@@ -63,14 +80,23 @@ function App() {
       />}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/signup' element={<Signup/>}/>
+    
       <Route path='/dashboard' element={
         <ProtectedRoute>
           <Dashboard
           blogs = {blogs}
           getInitials = {getInitials}
           handleLike={handleLike}
+          handleDelete={handleDelete}
           />
         </ProtectedRoute>
+
+        
+      }/>
+      <Route path='/addArticle' element={
+        <ProtectedRoute>
+         <CreateArticle/>
+        </ProtectedRoute>  
       }/>
     </Routes>
    </Router>

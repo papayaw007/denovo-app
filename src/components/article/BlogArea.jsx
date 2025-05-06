@@ -19,6 +19,7 @@ import { useState } from 'react';
     setSelectedArticle(null);
   }
 
+
   return (
     <>
     <div className='mt-5 flex flex-col justify-center items-center space-y-10'>
@@ -32,6 +33,7 @@ import { useState } from 'react';
         ) : (
           blogs.map( card=>(
             <BlogCard
+            articleid ={card.id}
             key={card.id}
             title={card.title}
             initials = {getInitials(card.name)}

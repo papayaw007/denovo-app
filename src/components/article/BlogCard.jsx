@@ -4,6 +4,7 @@ import { FaTrash } from 'react-icons/fa';
 import { RiThumbUpFill } from 'react-icons/ri'; // Filled
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebaseConfig'; 
+import { useLocation } from 'react-router-dom';
 
 
 
@@ -12,9 +13,13 @@ import { auth } from '../../firebaseConfig';
 
 
 
-    function BlogCard({title, initials, name, date, article, likes, onReadMore, handleLike}) {
+    function BlogCard({title, initials, name, date, article, likes, onReadMore, handleLike, handleDelete}) {
 
       const [user] = useAuthState(auth);
+      const location = useLocation();
+ 
+
+      
 
     
         
@@ -34,7 +39,7 @@ import { auth } from '../../firebaseConfig';
       <div className='flex justify-center items-center space-x-1 sm:space-x-2'>
         <p className='text-xs sm:text-sm text-gray-500'><span>{likes}</span> likes</p>
         <div className='flex justify-center items-center'>
-          <button onClick={() => handleLike()}>
+          <button onClick={handleLike}>
             <RiThumbUpFill className="text-lg sm:text-xl text-indigo-500 hover:text-indigo-700 cursor-pointer" />
           </button>
         </div>
@@ -42,10 +47,10 @@ import { auth } from '../../firebaseConfig';
       
       <div className='flex space-x-2'>
         <button onClick = {()=>onReadMore(article)} className='px-3 sm:px-4 py-1 sm:py-2 bg-indigo-500 hover:bg-indigo-700 text-white rounded-md text-xs sm:text-sm'>Read More</button>
-       { user &&  <button>
-          <MdEdit className="text-indigo-700 text-lg sm:text-xl hover:text-indigo-500 cursor-pointer" />
+       { user && location.pathname === '/dashboard' &&  <button>
+          <MdEdit className="hidden text-indigo-700 text-lg sm:text-xl hover:text-indigo-500 cursor-pointer" />
         </button> }
-      { user && <button>
+      { user && location.pathname === '/dashboard' && <button onClick={handleDelete}>
         <FaTrash className="text-red-500 text-lg sm:text-xl hover:text-red-700 cursor-pointer" />
       </button> }
       </div>

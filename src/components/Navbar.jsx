@@ -14,7 +14,6 @@ function Navbar() {
   let displayName;
   if (auth.currentUser){
      displayName = user1.displayName
-   
   }else{
     displayName = 'User';
   }
