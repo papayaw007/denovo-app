@@ -4,8 +4,9 @@ import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from '../../firebaseConfig';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { ToastContainer, toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
+import { FiArrowLeft } from 'react-icons/fi';
 
 export default function CreateArticle() {
     const [title, setTitle] = useState('');
@@ -50,7 +51,12 @@ export default function CreateArticle() {
   return (
     <>
     <div className='flex justify-center items-center min-h-screen bg-indigo-200'>
-        <div className='bg-white p-20 rounded-lg'>
+        <div className='bg-white p-10 rounded-lg'>
+        <Link to={'/dashboard'} >
+            <button className='flex items-center px-4 py-2 bg-indigo-500 text-white rounded-lg mb-5'>
+            <FiArrowLeft style={{ marginRight: '5px' }} />
+                <div>Back</div></button>
+        </Link>
             <form onSubmit={handleSubmit}
             className='space-y-5'
             >
