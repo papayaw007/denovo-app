@@ -53,7 +53,7 @@ export default function CreateArticle() {
     <div className='flex justify-center items-center min-h-screen bg-indigo-200'>
         <div className='bg-white p-10 rounded-lg'>
         <Link to={'/dashboard'} >
-            <button className='flex items-center px-4 py-2 bg-indigo-500 text-white rounded-lg mb-5'>
+            <button className='flex items-center px-4 py-2 bg-indigo-500 text-white rounded-lg mb-5 hover:bg-indigo-700'>
             <FiArrowLeft style={{ marginRight: '5px' }} />
                 <div>Back</div></button>
         </Link>
