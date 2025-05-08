@@ -84,7 +84,7 @@ export default function Dashboard({ blogs, getInitials, handleLike, handleDelete
 
 
 
-  if (loading) return <p>Loading articles...</p>;
+  if (loading) return <p className="flex mt-96 justify-center items-center text-6xl text-indigo-600 font-bold animate-bounce ">DENOVO...</p>;
 
   return (
     <div>

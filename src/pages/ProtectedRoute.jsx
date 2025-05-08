@@ -11,7 +11,7 @@ export default function ProtectedRoute({children}) {
  
 
     if (loading) {
-      return <div>Loading...</div>; // Show a loading state while checking
+      return <div><p className="flex mt-96 justify-center items-center text-6xl text-indigo-600 font-bold animate-bounce ">DENOVO...</p></div>;
     }
   
     if (!user) {

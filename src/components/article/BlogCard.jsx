@@ -1,7 +1,7 @@
 import React from 'react'
-import { MdEdit } from 'react-icons/md'; // Material Icons
+import { MdEdit } from 'react-icons/md';
 import { FaTrash } from 'react-icons/fa';
-import { RiThumbUpFill } from 'react-icons/ri'; // Filled
+import { RiThumbUpFill } from 'react-icons/ri'; 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebaseConfig'; 
 import { Link, useLocation } from 'react-router-dom';
