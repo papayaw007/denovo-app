@@ -15,12 +15,14 @@ import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import ProtectedRoute from './pages/ProtectedRoute';
 import CreateArticle from './components/article/CreateArticle';
+import Summarize from './pages/Summarize';
 
 
 
 function App() {
 
   const [blogs, setBlogs] = useState([]);
+  // const [selectedSum, setSelectedSum] = useState(null);
 
 
 
@@ -68,6 +70,16 @@ const handleDelete = async (id) => {
   }
 };
 
+// const handleSummarize = (id) => {
+//   const selected = blogs.find((article) => article.id === id);
+//   setSelectedSum(selected);
+//   return selectedSum;
+// };
+
+
+// blogs.map((card)=>(setSumNote(card.id)));
+
+
 
   return (
    <Router>
@@ -88,6 +100,7 @@ const handleDelete = async (id) => {
           getInitials = {getInitials}
           handleLike={handleLike}
           handleDelete={handleDelete}
+  
           />
         </ProtectedRoute>
 
@@ -98,6 +111,7 @@ const handleDelete = async (id) => {
          <CreateArticle/>
         </ProtectedRoute>  
       }/>
+      <Route path='/summarize' element={<Summarize/>}/>
     </Routes>
    </Router>
   )

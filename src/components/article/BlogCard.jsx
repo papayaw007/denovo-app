@@ -4,24 +4,16 @@ import { FaTrash } from 'react-icons/fa';
 import { RiThumbUpFill } from 'react-icons/ri'; // Filled
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebaseConfig'; 
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { AiFillBuild } from "react-icons/ai";
 
 
 
-
-
-
-
-
-    function BlogCard({title, initials, name, date, article, likes, onReadMore, handleLike, handleDelete}) {
+    function BlogCard({title, initials, name, date, article, likes, onReadMore, handleLike, handleDelete, handleSummarize}) {
 
       const [user] = useAuthState(auth);
       const location = useLocation();
  
-
-      
-
-    
         
   return (
     <>
@@ -45,7 +37,15 @@ import { useLocation } from 'react-router-dom';
         </div>
       </div>
       
-      <div className='flex space-x-2'>
+      <div className='flex items-center space-x-2'>
+      <div clasName="relative group justify-center items-center px-2">
+        <button onClick={()=>handleSummarize()}>
+        <AiFillBuild className='text-2xl text-indigo-500 ' />
+        </button>
+  <div class="absolute invisible group-hover:visible bg-white text-indigo p-2 rounded shadow-lg top-full mt-1">
+    Summarize with AI
+  </div>
+</div>
         <button onClick = {()=>onReadMore(article)} className='px-3 sm:px-4 py-1 sm:py-2 bg-indigo-500 hover:bg-indigo-700 text-white rounded-md text-xs sm:text-sm'>Read More</button>
        { user && location.pathname === '/dashboard' &&  <button>
           <MdEdit className="hidden text-indigo-700 text-lg sm:text-xl hover:text-indigo-500 cursor-pointer" />

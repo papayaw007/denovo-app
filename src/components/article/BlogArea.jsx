@@ -2,19 +2,27 @@ import React from 'react'
 import BlogCard from './BlogCard';
 import ArticlePage from './ArticlePage';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 
  function BlogArea({blogs, getInitials, handleLike}) {
 
   const [selectedArticle, setSelectedArticle] = useState(null);
+  // const [selectedSum, setSelectedSum] = useState(null);
+  const navigate = useNavigate();
+  
 
   const handleReadMore = (id) => {
     const selected = blogs.find((article) => article.id === id);
     setSelectedArticle(selected);
   };
 
- 
+  const handleSummarize = (id) => {
+    const selected = blogs.find((article) => article.id === id);
+    navigate('/summarize', { state: { selected } });
+  };
+
   const onBack = () =>{
     setSelectedArticle(null);
   }
@@ -47,6 +55,7 @@ import { useState } from 'react';
             likes = {card.likes}
             onReadMore={()=>handleReadMore(card.id)}
             handleLike= {()=> handleLike(card.id)}
+            handleSummarize={()=>handleSummarize(card.id)}
             />
           ))
 
