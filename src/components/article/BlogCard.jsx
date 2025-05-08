@@ -38,14 +38,17 @@ import { AiFillBuild } from "react-icons/ai";
       </div>
       
       <div className='flex items-center space-x-2'>
-      <div clasName="relative group justify-center items-center px-2">
-        <button onClick={()=>handleSummarize()}>
-        <AiFillBuild className='text-2xl text-indigo-500 ' />
-        </button>
-  <div class="absolute invisible group-hover:visible bg-white text-indigo p-2 rounded shadow-lg top-full mt-1">
-    Summarize with AI
-  </div>
-</div>
+      <div className="relative group flex justify-center items-center px-2">
+      <button onClick={() => handleSummarize()}>
+        <AiFillBuild className="text-2xl text-indigo-500" />
+      </button>
+      <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 
+                      invisible group-hover:visible 
+                      bg-white text-indigo-500 p-2 rounded shadow-lg 
+                      transition-all duration-200 z-10 ">
+        Summarize with AI
+      </div>
+    </div>
         <button onClick = {()=>onReadMore(article)} className='px-3 sm:px-4 py-1 sm:py-2 bg-indigo-500 hover:bg-indigo-700 text-white rounded-md text-xs sm:text-sm'>Read More</button>
        { user && location.pathname === '/dashboard' &&  <button>
           <MdEdit className="hidden text-indigo-700 text-lg sm:text-xl hover:text-indigo-500 cursor-pointer" />
