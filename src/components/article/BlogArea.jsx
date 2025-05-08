@@ -30,9 +30,9 @@ import { useNavigate } from 'react-router-dom';
 
   return (
     <>
+    <p className='px-20 py-4 text-2xl font-medium text-indigo-50 bg-indigo-400'>Articles</p>
     <div className='mt-5 flex flex-col justify-center items-center space-y-10'>
       {
-
         selectedArticle ? (
           <ArticlePage
           art = {selectedArticle}
